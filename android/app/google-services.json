@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "307457758702",
+    "project_id": "progetto-finale-ristorante-fl",
+    "storage_bucket": "progetto-finale-ristorante-fl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307457758702:android:20b6575f3851526b8eeaff",
+        "android_client_info": {
+          "package_name": "com.example.ristorante_finale"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa2Z9c1jaQihWcqwZ2jPZTI1s2zylgWeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
