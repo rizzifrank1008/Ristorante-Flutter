@@ -8,14 +8,36 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Definizione dello stile del testo per la descrizione
+    TextStyle descriptionStyle = TextStyle(
+      fontSize: 18,
+      color: Colors.white.withOpacity(0.9), // Rende il testo leggermente traslucido per una migliore lettura
+      fontFamily: 'Helvetica', // Cambiato in Helvetica per uno stile più "Apple"
+      height: 1.5, // Spaziatura tra le linee
+    );
+
+    // Definizione dello stile dei pulsanti
+    ButtonStyle buttonStyle(Color backgroundColor) => ElevatedButton.styleFrom(
+      foregroundColor: Colors.white, backgroundColor: backgroundColor, // Colore del testo
+      padding: const EdgeInsets.symmetric(vertical: 15), // Padding verticale più generoso
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15), // Angoli più arrotondati
+      ),
+      elevation: 10, // Elevazione per un effetto ombra più marcato
+    );
+
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'Homepage',
-            style: TextStyle(fontWeight: FontWeight.bold),
+        elevation: 0, // Rimuove l'ombra dell'AppBar per un aspetto più pulito
+        centerTitle: true, // Centra il titolo
+        title: Text(
+          'Homepage',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.black, // Testo nero per coerenza con lo stile chiaro
           ),
         ),
+        backgroundColor: Colors.white, // Sfondo bianco per l'AppBar
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -27,23 +49,17 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 'Sushi-Mania è il paradiso per gli amanti del sushi. Con una vasta selezione di piatti preparati con pesce fresco e ingredienti di alta qualità, offre un\'esperienza culinaria unica. Atmosfera accogliente e servizio impeccabile lo rendono il luogo ideale per gustare autentici sapori giapponesi e soddisfare le tue voglie di sushi.',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontFamily: 'Montserrat',
-                  height: 2,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: descriptionStyle,
               ),
             ),
-            const Spacer(),
-            Container(
-              padding: const EdgeInsets.all(8.0),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
                   Expanded(
@@ -51,46 +67,20 @@ class HomePage extends StatelessWidget {
                       onPressed: () {
                         // Azione per il pulsante "Carrello"
                       },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 20), backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ), // Colore di sfondo del bottone
-                        shadowColor: Colors.blue.shade300, // Colore dell'ombra
-                        elevation: 5, // Altezza dell'ombra
-                      ),
-                      icon: const Icon(Icons.shopping_cart, color: Colors.black,), // Icona del carrello
-                      label: const Text(
-                        'Carrello',
-                        style: TextStyle(
-                          color: Colors.white, // Colore del testo
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      style: buttonStyle(Colors.blue.shade400), // Usa lo stile definito sopra
+                      icon: const Icon(Icons.shopping_cart, color: Colors.white),
+                      label: const Text('Carrello'),
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 16),
                   Expanded(
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        Get.toNamed(Routes.MENU); // Usa GetX per navigare alla MenuPage
+                        Get.toNamed(Routes.MENU); // Navigazione
                       },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 20), backgroundColor: Colors.orangeAccent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ), // Colore di sfondo del bottone
-                        shadowColor: Colors.orange.shade300, // Colore dell'ombra
-                        elevation: 5, // Altezza dell'ombra
-                      ),
-                      icon: const Icon(Icons.restaurant_menu, color: Colors.black,), // Icona del menu
-                      label: const Text(
-                        'Menu',
-                        style: TextStyle(
-                          color: Colors.white, // Colore del testo
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      style: buttonStyle(Colors.green.shade400), // Colore verde per diversificare
+                      icon: const Icon(Icons.restaurant_menu, color: Colors.white),
+                      label: const Text('Menu'),
                     ),
                   ),
                 ],

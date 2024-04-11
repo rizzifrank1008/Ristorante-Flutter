@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: Routes.HOME, // Usa la rotta iniziale definita in Routes
+      initialRoute: Routes.AUTH, // Usa la rotta iniziale definita in Routes
       getPages: AppPages.routes, // Usa le tue rotte definite in AppPages
     );
   }
