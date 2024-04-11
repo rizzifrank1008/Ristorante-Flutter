@@ -1,7 +1,8 @@
-// features/home/presentation/pages/menu_page.dart
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ristorante_finale/features/menuPage/presentation/controller/menu_controller.dart';
 
-class MenuPage extends StatelessWidget {
+class MenuPage extends GetView<MenuRestourantController> {
   const MenuPage({Key? key}) : super(key: key);
 
   @override
@@ -10,9 +11,12 @@ class MenuPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Menu del Ristorante'),
       ),
-      body: Center(
-        child: Text('Lista dei piatti disponibili'),
-      ),
+      body: Obx(() => ListView.builder(
+        itemCount: controller.categorie.length,
+        itemBuilder: (context, index) => ListTile(
+          title: Text(controller.categorie[index]),
+        ),
+      )),
     );
   }
 }

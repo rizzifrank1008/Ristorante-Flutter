@@ -17,7 +17,7 @@ class AppPages{
     ),
     GetPage( // Aggiungi questa nuova rotta
       name: Routes.MENU,
-      page: () => const MenuPage(),
+      page: () => MenuPage(),
         binding: MenuBinding()
     ),
     GetPage( // Aggiungi questa nuova rotta

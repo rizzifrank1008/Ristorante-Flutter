@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'progetto-finale-ristorante-fl.appspot.com',
     iosBundleId: 'com.example.ristoranteFinale',
   );
+
 }
