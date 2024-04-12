@@ -55,15 +55,20 @@ class AuthPage extends GetView<AuthController> {
               SizedBox(height: 40),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Colors.blue, // Text Color (Foreground color)
-                  minimumSize: Size(double.infinity, 50), // Button size
+                  foregroundColor: Colors.white, // Colore del testo
+                  backgroundColor: Color.fromRGBO(245,110,73,1), // Colore di sfondo del pulsante (Arancione)
+                  minimumSize: Size(double.infinity, 50), // Dimensione del pulsante
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10), // Border Radius
+                    borderRadius: BorderRadius.circular(10), // Angoli arrotondati del pulsante
                   ),
+                  elevation: 8, // Elevazione del pulsante per l'ombra
+                  shadowColor: Color.fromRGBO(255, 140, 0, 0.5), // Colore dell'ombra
                 ),
                 onPressed: controller.login,
                 child: Text('Login', style: TextStyle(fontSize: 18)),
               ),
+
+
               TextButton(
                 onPressed: () {
                   var email = controller.emailController.text;

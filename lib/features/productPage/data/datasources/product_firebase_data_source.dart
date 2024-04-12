@@ -6,19 +6,18 @@
 // La funzione è asincrona e ritorna un Future che sarà una lista di stringhe.
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../models/category_model.dart';
+import '../models/product_model.dart';
 
-class MenuFirebaseDataSource {
+class ProductFirebaseDataSource {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<List<Category>> getCategories() async {
-    final snapshot = await firestore.collection('categorie').get();
-    final categories = snapshot.docs.map((doc) {
+  Future<List<Product>> getCategories() async {
+    final snapshot = await firestore.collection('meals').get();
+    final products = snapshot.docs.map((doc) {
       // Usa il factory constructor per convertire ogni documento in un oggetto Category
-      return Category.fromJson(doc.data() as Map<String, dynamic>, doc.id);
+      return Product.fromJson(doc.data() as Map<String, dynamic>, doc.id);
     }).toList();
-    print("Categorie recuperate: ${categories.map((c) => c.title)
-        .toList()}"); // Aggiungi per debug
-    return categories;
+    print("prodotti recuperati: ${products.map((c) => c.title).toList()}");  // Aggiungi per debug
+    return products;
   }
 }

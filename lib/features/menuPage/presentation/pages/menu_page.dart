@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ristorante_finale/features/menuPage/presentation/controller/menu_controller.dart';
-// import 'FavoritesScreen.dart';
-// import 'cart_screen.dart';
+
+import '../../../../routes/routes.dart';
+import '../../../home/presentation/pages/home_page.dart';
 
 class MenuPage extends GetView<MenuRestourantController> {
   const MenuPage({Key? key}) : super(key: key);
@@ -12,40 +13,11 @@ class MenuPage extends GetView<MenuRestourantController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Menu del Ristorante'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.favorite,
-              size: 40,
-              color: Colors.redAccent,
-            ),
-            onPressed: () {
-              // Navigator.of(context).push(MaterialPageRoute(
-              //   builder: (context) => FavoritesScreen(),
-              // ));
-            },
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.shopping_cart,
-              size: 40,
-              color: Colors.deepPurpleAccent,
-            ),
-            onPressed: () {
-              // Navigator.of(context).push(MaterialPageRoute(
-              //   builder: (context) => CartScreen(),
-              // ));
-            },
-          ),
-        ],
+
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: Icon(
-                Icons.menu,
-                size: 40,
-                color: Colors.black,
-              ),
+              icon: Icon(Icons.menu, size: 40, color: Colors.black),
               onPressed: () => Scaffold.of(context).openDrawer(),
             );
           },
@@ -55,12 +27,6 @@ class MenuPage extends GetView<MenuRestourantController> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            // UserAccountsDrawerHeader(
-            //   accountName: Text("Nome Utente"),
-            //   decoration: BoxDecoration(
-            //     color: Colors.blue,
-            //   ),
-            // ),
             Divider(),
             ListTile(
               leading: Icon(Icons.add),
@@ -74,7 +40,7 @@ class MenuPage extends GetView<MenuRestourantController> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.all(10), // Aggiunge margini attorno al GridView
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [Colors.white, Colors.grey[100]!, Colors.white54],
@@ -85,7 +51,7 @@ class MenuPage extends GetView<MenuRestourantController> {
         child: Obx(() => GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 4 / 3,  // Modificato per ridurre la dimensione delle card
+            childAspectRatio: 4 / 3,
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
           ),
@@ -94,12 +60,12 @@ class MenuPage extends GetView<MenuRestourantController> {
             final category = controller.categories[index];
             return InkWell(
               onTap: () {
-                // Define your navigation logic here
+                Get.toNamed(Routes.PRODOTTO, arguments: category.id);
               },
               splashColor: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(15),
               child: Container(
-                margin: const EdgeInsets.all(5), // Aggiunge margini attorno a ciascuna card
+                margin: const EdgeInsets.all(5),
                 padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -116,7 +82,7 @@ class MenuPage extends GetView<MenuRestourantController> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: Offset(0, 3),
                     ),
                   ],
                 ),
@@ -131,6 +97,29 @@ class MenuPage extends GetView<MenuRestourantController> {
             );
           },
         )),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 6.0,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Get.to(() => HomePage());
+              },
+
+            ),
+            IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                // Aggiungi qui la logica di navigazione al Carrello
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

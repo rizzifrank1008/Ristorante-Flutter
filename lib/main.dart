@@ -1,11 +1,11 @@
-// main.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart'; // Import necessario per manipolare le UI Overlays
 import 'firebase_options.dart';
-import 'routes/app_pages.dart'; // Assicurati che il percorso sia corretto
-import 'routes/routes.dart'; // Assicurati che il percorso sia corretto
-import 'data_uploader.dart';  // Assicurati di includere il nuovo file qui
+import 'routes/app_pages.dart';
+import 'routes/routes.dart';
+import 'data_uploader.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,18 +13,20 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // Opzionale: Esegui il caricamento dei dati all'avvio
-  if (shouldUploadData()) {
-    await uploadData();
-  }
+  // // Opzionale: Esegui il caricamento dei dati all'avvio
+  // if (shouldUploadData()) {
+  //   await uploadData();
+  // }
+
+  // Nascondi la barra di stato e la barra di navigazione all'avvio dell'app
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
   runApp(const MyApp());
 }
 
-bool shouldUploadData() {
-  // Qui puoi inserire la logica per decidere se eseguire o meno l'upload
-  return true;  // Per semplicità, lo facciamo sempre qui
-}
+// bool shouldUploadData() {
+//   return true;  // Per semplicità, lo facciamo sempre qui
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo Ristorante',
+      debugShowCheckedModeBanner: false, // Rimuove il banner di debug
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

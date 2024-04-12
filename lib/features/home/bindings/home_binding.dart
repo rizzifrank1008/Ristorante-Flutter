@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 
+import '../../login/presentation/controller/auth_controller.dart';
+
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    // Qui puoi inserire le dipendenze necessarie per la tua HomePage
+    Get.lazyPut(() => AuthController());
   }
 }
