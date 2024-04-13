@@ -13,7 +13,6 @@ class MenuPage extends GetView<MenuRestourantController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Menu del Ristorante'),
-
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -98,25 +97,46 @@ class MenuPage extends GetView<MenuRestourantController> {
           },
         )),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.transparent, // Makes FAB background transparent
+        elevation: 0,
+        onPressed: () {},
+        child: CircleAvatar(
+          radius: 30, // Adjust the size for visual appearance
+          backgroundColor: Colors.orange,
+          child: Icon(Icons.shopping_cart, size: 35, color: Colors.white), // Adjust the icon size as needed
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        color: Colors.red,
         shape: CircularNotchedRectangle(),
         notchMargin: 6.0,
         child: Row(
-          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             IconButton(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home, color: Colors.white),
+              iconSize: 30,
               onPressed: () {
-                Get.to(() => HomePage());
+                Get.toNamed(Routes.HOME);
               },
-
             ),
             IconButton(
-              icon: Icon(Icons.shopping_cart),
-              onPressed: () {
-                // Aggiungi qui la logica di navigazione al Carrello
-              },
+              icon: Icon(Icons.person, color: Colors.white),
+              iconSize: 30,
+              onPressed: () {},
+            ),
+            SizedBox(width: 48),  // Provide space for the floating button
+            IconButton(
+              icon: Icon(Icons.search, color: Colors.white),
+              iconSize: 30,
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(Icons.more_horiz, color: Colors.white),
+              iconSize: 30,
+              onPressed: () {},
             ),
           ],
         ),

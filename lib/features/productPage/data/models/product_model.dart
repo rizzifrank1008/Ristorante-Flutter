@@ -5,7 +5,8 @@ class Product {
   final int duration;
   final String complexity;
   final bool isVegan;
-  final List<String> categories; // Mantieni il tipo come List<String>
+  final List<String> categories;
+  final double price; // Ensure this is never null
 
   Product({
     required this.id,
@@ -15,6 +16,7 @@ class Product {
     required this.complexity,
     required this.isVegan,
     required this.categories,
+    required this.price,
   });
 
   factory Product.fromJson(Map<String, dynamic> data, String documentId) {
@@ -22,10 +24,14 @@ class Product {
       throw Exception("Data is null or empty");
     }
 
-    // Converti il campo categories da dynamic a List<String>
-    final List<String> categories = (data['categories'] as List<dynamic>)
-        .map((category) => category.toString())
-        .toList();
+    final List<String> categories = (data['categories'] as List<dynamic>).map((category) => category.toString()).toList();
+
+    double parsedPrice = 0.0; // Default price
+    try {
+      parsedPrice = (data['price'] as num?)?.toDouble() ?? 0.0; // Safely attempt to parse the price
+    } catch (e) {
+      print("Failed to parse price: $e");
+    }
 
     return Product(
       id: documentId,
@@ -34,7 +40,8 @@ class Product {
       duration: data['duration'] as int? ?? 0,
       complexity: data['complexity'] as String? ?? '',
       isVegan: data['isVegan'] as bool? ?? false,
-      categories: categories, // Assegna il valore convertito al campo categories
+      categories: categories,
+      price: parsedPrice,
     );
   }
 
@@ -47,6 +54,7 @@ class Product {
       'complexity': complexity,
       'isVegan': isVegan,
       'categories': categories,
+      'price': price,
     };
   }
 }
