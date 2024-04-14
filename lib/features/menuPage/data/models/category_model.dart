@@ -1,4 +1,3 @@
-import '../../domain/entities/category_entity.dart';
 
 class Category {
   final String id;

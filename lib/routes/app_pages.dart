@@ -7,6 +7,8 @@ import '../features/login/bindings/auth_binding.dart';
 import '../features/login/presentation/pages/auth_page.dart';
 import '../features/menuPage/bindings/menu_binding.dart';
 import '../features/menuPage/presentation/pages/menu_page.dart';
+import '../features/productDetailsPage/bindings/product-details_binding.dart';
+import '../features/productDetailsPage/presentation/pages/product-details_page.dart';
 import '../features/productPage/bindings/product_binding.dart';
 import '../features/productPage/presentation/pages/product_page.dart';
 
@@ -19,18 +21,23 @@ class AppPages{
     ),
     GetPage( // Aggiungi questa nuova rotta
       name: Routes.MENU,
-      page: () => MenuPage(),
+      page: () => const MenuPage(),
         binding: MenuBinding()
     ),
     GetPage( // Aggiungi questa nuova rotta
         name: Routes.PRODOTTO,
-        page: () => ProductPage(),
+        page: () => const ProductPage(),
         binding: ProductBinding()
     ),
     GetPage( // Aggiungi questa nuova rotta
         name: Routes.AUTH,
         page: () => const AuthPage(),
         binding: AuthBinding()
+    ),
+    GetPage( // Aggiungi questa nuova rotta
+        name: Routes.PRODOTTODETTAGLIO,
+        page: () => const ProductDetailsPage(),
+        binding: ProductDetailsBinding()
     ),
   ];
 }

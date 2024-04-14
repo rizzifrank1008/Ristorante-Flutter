@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../controller/auth_controller.dart';
 
 class AuthPage extends GetView<AuthController> {
-  const AuthPage({Key? key}) : super(key: key);
+  const AuthPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class AuthPage extends GetView<AuthController> {
                   color: Colors.black.withOpacity(0.8),
                 ),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               TextField(
                 controller: controller.emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -36,10 +36,10 @@ class AuthPage extends GetView<AuthController> {
                   ),
                   labelText: 'Email',
                   hintText: 'Inserisci la tua email',
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.email),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 controller: controller.passwordController,
                 obscureText: true,
@@ -49,23 +49,23 @@ class AuthPage extends GetView<AuthController> {
                   ),
                   labelText: 'Password',
                   hintText: 'Inserisci la tua password',
-                  prefixIcon: Icon(Icons.lock),
+                  prefixIcon: const Icon(Icons.lock),
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white, // Colore del testo
-                  backgroundColor: Color.fromRGBO(245,110,73,1), // Colore di sfondo del pulsante (Arancione)
-                  minimumSize: Size(double.infinity, 50), // Dimensione del pulsante
+                  backgroundColor: const Color.fromRGBO(245,110,73,1), // Colore di sfondo del pulsante (Arancione)
+                  minimumSize: const Size(double.infinity, 50), // Dimensione del pulsante
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10), // Angoli arrotondati del pulsante
                   ),
                   elevation: 8, // Elevazione del pulsante per l'ombra
-                  shadowColor: Color.fromRGBO(255, 140, 0, 0.5), // Colore dell'ombra
+                  shadowColor: const Color.fromRGBO(255, 140, 0, 0.5), // Colore dell'ombra
                 ),
                 onPressed: controller.login,
-                child: Text('Login', style: TextStyle(fontSize: 18)),
+                child: const Text('Login', style: TextStyle(fontSize: 18)),
               ),
 
 
@@ -75,7 +75,7 @@ class AuthPage extends GetView<AuthController> {
                   var password = controller.passwordController.text;
                   controller.signUp(email, password);
                 },
-                child: Text(
+                child: const Text(
                   'Non hai un account? Registrati',
                   style: TextStyle(
                     color: Colors.blue,

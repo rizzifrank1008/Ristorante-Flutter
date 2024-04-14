@@ -4,7 +4,7 @@ import 'package:ristorante_finale/routes/routes.dart';
 import '../../../login/presentation/controller/auth_controller.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +32,11 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text('Homepage', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+        title: const Text('Homepage', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
         backgroundColor: Colors.white,
         actions: [
           IconButton(
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
             color: Colors.black,
             onPressed: () {
               authController.logout();
@@ -58,8 +58,8 @@ class HomePage extends StatelessWidget {
                   'lib/images/cuoco.png',
                   height: 200,
                 ),
-                SizedBox(height: 20),
-                Text(
+                const SizedBox(height: 20),
+                const Text(
                   'Benvenuto al Ristorante!',
                   style: TextStyle(
                     fontSize: 24,
@@ -75,15 +75,15 @@ class HomePage extends StatelessWidget {
                     style: descriptionStyle,
                   ),
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
 
                     ElevatedButton.icon(
-                      style: buttonStyle(Color.fromRGBO(245, 110, 73, 1)), // Applica il colore arancione
+                      style: buttonStyle(const Color.fromRGBO(245, 110, 73, 1)), // Applica il colore arancione
                       icon: const Icon(Icons.restaurant_menu, color: Colors.white),
-                      label: Text('Menu', style: TextStyle(fontSize: 16)),
+                      label: const Text('Menu', style: TextStyle(fontSize: 16)),
                       onPressed: () {
                         Get.toNamed(Routes.MENU);
                       },

@@ -5,7 +5,6 @@ import 'package:flutter/services.dart'; // Import necessario per manipolare le U
 import 'firebase_options.dart';
 import 'routes/app_pages.dart';
 import 'routes/routes.dart';
-import 'data_uploader.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

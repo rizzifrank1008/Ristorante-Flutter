@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../routes/routes.dart';
 import '../../../home/presentation/pages/home_page.dart';
+import '../../../productDetailsPage/presentation/pages/product-details_page.dart';
 import '../controller/product_controller.dart';
 
 class ProductPage extends GetView<ProductRestourantController> {
-  const ProductPage({Key? key}) : super(key: key);
+  const ProductPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +18,17 @@ class ProductPage extends GetView<ProductRestourantController> {
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: Icon(Icons.menu, size: 40, color: Colors.black),
-              onPressed: () => Scaffold.of(context).openDrawer(),
+              icon: const Icon(Icons.arrow_back, size: 24, color: Colors.black),
+              onPressed: () => Navigator.of(context).pop(), // Utilizza Navigator.pop per tornare alla schermata precedente
             );
           },
         ),
       ),
+
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: <Widget>[
+          children: const <Widget>[
             Divider(),
             ListTile(
               leading: Icon(Icons.add),
@@ -66,7 +69,7 @@ class ProductPage extends GetView<ProductRestourantController> {
                     Hero(
                       tag: 'image_${meal.id}',
                       child: ClipRRect(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20),
                         ),
@@ -79,42 +82,42 @@ class ProductPage extends GetView<ProductRestourantController> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(meal.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                          SizedBox(height: 8),
+                          Text(meal.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          const SizedBox(height: 8),
                           Row(
                             children: [
-                              Icon(Icons.timer, size: 20),
-                              SizedBox(width: 4),
+                              const Icon(Icons.timer, size: 20),
+                              const SizedBox(width: 4),
                               Text('Durata: ${meal.duration} min'),
                             ],
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           Row(
                             children: [
-                              Icon(Icons.star_rate, size: 20),
-                              SizedBox(width: 4),
+                              const Icon(Icons.star_rate, size: 20),
+                              const SizedBox(width: 4),
                               Text('Complessità: ${meal.complexity}'),
                             ],
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           Row(
                             children: [
-                              Icon(Icons.euro_symbol, size: 20),
-                              SizedBox(width: 4),
+                              const Icon(Icons.euro_symbol, size: 20),
+                              const SizedBox(width: 4),
                               Text('Prezzo: €${meal.price.toStringAsFixed(2)}'),
                             ],
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           Row(
                             children: [
                               meal.isVegan
-                                  ? Icon(Icons.eco, size: 20, color: Colors.green) // Icona per i piatti vegani
-                                  : Icon(Icons.cancel, size: 20, color: Colors.red), // Icona per i piatti non vegani
-                              SizedBox(width: 4),
+                                  ? const Icon(Icons.eco, size: 20, color: Colors.green) // Icona per i piatti vegani
+                                  : const Icon(Icons.cancel, size: 20, color: Colors.red), // Icona per i piatti non vegani
+                              const SizedBox(width: 4),
                               Text(meal.isVegan ? 'Piatto vegano' : 'Non vegano'), // Testo che cambia in base alla condizione
                             ],
                           ),
@@ -125,12 +128,11 @@ class ProductPage extends GetView<ProductRestourantController> {
                       alignment: MainAxisAlignment.start,
                       children: [
                         ElevatedButton.icon(
-                          icon: Icon(Icons.add_shopping_cart, color: Colors.white),
-                          label: Text(
+                          icon: const Icon(Icons.add_shopping_cart, color: Colors.white),
+                          label: const Text(
                             'Aggiungi al carrello',
-                            style: TextStyle(color: Colors.white),  // Assicurati che il testo sia bianco
+                            style: TextStyle(color: Colors.white),
                           ),
-
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(context).colorScheme.secondary,
                             shape: RoundedRectangleBorder(
@@ -138,11 +140,29 @@ class ProductPage extends GetView<ProductRestourantController> {
                             ),
                           ),
                           onPressed: () {
-                            // Add to cart logic
+                            // Logica per aggiungere al carrello
+                          },
+                        ),
+                        SizedBox(width: 10), // Distanza tra i pulsanti
+                        ElevatedButton.icon(
+                          icon: const Icon(Icons.info_outline, color: Colors.white),
+                          label: const Text(
+                            'Dettagli',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(context).colorScheme.primary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          onPressed: () {
+                            Get.toNamed(Routes.PRODOTTODETTAGLIO, arguments: meal.id);
                           },
                         ),
                       ],
                     ),
+
                   ],
                 ),
               );
@@ -150,24 +170,46 @@ class ProductPage extends GetView<ProductRestourantController> {
           );
         }),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.transparent, // Makes FAB background transparent
+        elevation: 0,
+        onPressed: () {},
+        child: const CircleAvatar(
+          radius: 30, // Adjust the size for visual appearance
+          backgroundColor: Colors.orange,
+          child: Icon(Icons.shopping_cart, size: 35, color: Colors.white), // Adjust the icon size as needed
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        color: Colors.red,
+        shape: const CircularNotchedRectangle(),
         notchMargin: 6.0,
         child: Row(
-          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             IconButton(
-              icon: Icon(Icons.home),
+              icon: const Icon(Icons.home, color: Colors.white),
+              iconSize: 30,
               onPressed: () {
-                Get.to(() => HomePage());
+                Get.toNamed(Routes.HOME);
               },
             ),
             IconButton(
-              icon: Icon(Icons.shopping_cart),
-              onPressed: () {
-                // Navigation logic to cart
-              },
+              icon: const Icon(Icons.person, color: Colors.white),
+              iconSize: 30,
+              onPressed: () {},
+            ),
+            const SizedBox(width: 48),  // Provide space for the floating button
+            IconButton(
+              icon: const Icon(Icons.search, color: Colors.white),
+              iconSize: 30,
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(Icons.more_horiz, color: Colors.white),
+              iconSize: 30,
+              onPressed: () {},
             ),
           ],
         ),

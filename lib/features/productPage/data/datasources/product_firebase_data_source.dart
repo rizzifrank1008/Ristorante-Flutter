@@ -15,7 +15,7 @@ class ProductFirebaseDataSource {
     final snapshot = await firestore.collection('meals').get();
     final products = snapshot.docs.map((doc) {
       // Usa il factory constructor per convertire ogni documento in un oggetto Category
-      return Product.fromJson(doc.data() as Map<String, dynamic>, doc.id);
+      return Product.fromJson(doc.data(), doc.id);
     }).toList();
     print("prodotti recuperati: ${products.map((c) => c.title).toList()}");  // Aggiungi per debug
     return products;

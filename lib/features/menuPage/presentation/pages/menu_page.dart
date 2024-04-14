@@ -3,29 +3,27 @@ import 'package:get/get.dart';
 import 'package:ristorante_finale/features/menuPage/presentation/controller/menu_controller.dart';
 
 import '../../../../routes/routes.dart';
-import '../../../home/presentation/pages/home_page.dart';
 
 class MenuPage extends GetView<MenuRestourantController> {
-  const MenuPage({Key? key}) : super(key: key);
+  const MenuPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Menu del Ristorante'),
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: Icon(Icons.menu, size: 40, color: Colors.black),
-              onPressed: () => Scaffold.of(context).openDrawer(),
-            );
-          },
+        title: Text('Dettagli del Prodotto', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.black),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new),
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: <Widget>[
+          children: const <Widget>[
             Divider(),
             ListTile(
               leading: Icon(Icons.add),
@@ -48,7 +46,7 @@ class MenuPage extends GetView<MenuRestourantController> {
           ),
         ),
         child: Obx(() => GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 4 / 3,
             crossAxisSpacing: 20,
@@ -81,14 +79,14 @@ class MenuPage extends GetView<MenuRestourantController> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),
                 child: Center(
                   child: Text(
                     category.title,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.titleLarge,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -101,7 +99,7 @@ class MenuPage extends GetView<MenuRestourantController> {
         backgroundColor: Colors.transparent, // Makes FAB background transparent
         elevation: 0,
         onPressed: () {},
-        child: CircleAvatar(
+        child: const CircleAvatar(
           radius: 30, // Adjust the size for visual appearance
           backgroundColor: Colors.orange,
           child: Icon(Icons.shopping_cart, size: 35, color: Colors.white), // Adjust the icon size as needed
@@ -110,31 +108,31 @@ class MenuPage extends GetView<MenuRestourantController> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         color: Colors.red,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 6.0,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             IconButton(
-              icon: Icon(Icons.home, color: Colors.white),
+              icon: const Icon(Icons.home, color: Colors.white),
               iconSize: 30,
               onPressed: () {
                 Get.toNamed(Routes.HOME);
               },
             ),
             IconButton(
-              icon: Icon(Icons.person, color: Colors.white),
+              icon: const Icon(Icons.person, color: Colors.white),
               iconSize: 30,
               onPressed: () {},
             ),
-            SizedBox(width: 48),  // Provide space for the floating button
+            const SizedBox(width: 48),  // Provide space for the floating button
             IconButton(
-              icon: Icon(Icons.search, color: Colors.white),
+              icon: const Icon(Icons.search, color: Colors.white),
               iconSize: 30,
               onPressed: () {},
             ),
             IconButton(
-              icon: Icon(Icons.more_horiz, color: Colors.white),
+              icon: const Icon(Icons.more_horiz, color: Colors.white),
               iconSize: 30,
               onPressed: () {},
             ),
