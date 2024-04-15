@@ -5,6 +5,7 @@
 // assegnate alla lista reattiva, causando l'aggiornamento dell'UI.
 
 import 'package:get/get.dart';
+import '../../../../routes/routes.dart';
 import '../../data/models/product_model.dart';
 import '../../data/repositories_impl/product_repository_impl.dart';
 
@@ -34,6 +35,27 @@ class ProductRestourantController extends GetxController {
     return categories.where((product) => product.categories.contains(categoryId)).toList();
   }
 
+  var selectedIndex = 0.obs;  // Use Rx<int> to observe changes
+
+  void changeTabIndex(int index) {
+    selectedIndex.value = index;  // Update the observable value
+    switch (index) {
+      case 0:
+        Get.toNamed(Routes.HOME);
+        break;
+      case 1:
+        Get.toNamed(Routes.PROFILE);
+        break;
+      case 2:
+      // Navigate to another route or do nothing
+        break;
+      case 3:
+      // Navigate to another route or do nothing
+        break;
+      default:
+        break;
+    }
+  }
 
 
 }
