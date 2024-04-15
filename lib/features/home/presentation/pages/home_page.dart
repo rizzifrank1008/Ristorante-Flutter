@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
                   children: [
 
                     ElevatedButton.icon(
-                      style: buttonStyle(const Color.fromRGBO(245, 110, 73, 1)), // Applica il colore arancione
+                      style: buttonStyle(const Color(0xFFF2510A)), // Applica il colore arancione
                       icon: const Icon(Icons.restaurant_menu, color: Colors.white),
                       label: const Text('Menu', style: TextStyle(fontSize: 16)),
                       onPressed: () {

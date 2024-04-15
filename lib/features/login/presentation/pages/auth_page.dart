@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import '../../../../routes/routes.dart';
 import '../controller/auth_controller.dart';
 
 class AuthPage extends GetView<AuthController> {
@@ -71,9 +72,11 @@ class AuthPage extends GetView<AuthController> {
 
               TextButton(
                 onPressed: () {
-                  var email = controller.emailController.text;
-                  var password = controller.passwordController.text;
-                  controller.signUp(email, password);
+                  // var email = controller.emailController.text;
+                  // var password = controller.passwordController.text;
+                  // controller.signUp(email, password);
+                  Get.toNamed(Routes.REGISTER);
+
                 },
                 child: const Text(
                   'Non hai un account? Registrati',

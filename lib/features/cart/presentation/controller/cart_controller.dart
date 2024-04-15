@@ -18,7 +18,7 @@ class CartController extends GetxController {
     if (existingItem != null) {
       existingItem.increaseQuantity();
     } else {
-      cartItems.add(CartItem(productId: productId, title: title, price: price, quantity: 1));
+      cartItems.add(CartItem(productId: productId, title: title, price: price, quantity: 1,));
     }
     updateTotal();
   }

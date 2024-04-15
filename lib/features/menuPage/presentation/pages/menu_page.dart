@@ -7,6 +7,8 @@ import '../../../../routes/routes.dart';
 class MenuPage extends GetView<MenuRestourantController> {
   const MenuPage({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,40 +105,50 @@ class MenuPage extends GetView<MenuRestourantController> {
         },
         child: const CircleAvatar(
           radius: 30, // Adjust the size for visual appearance
-          backgroundColor: Colors.orange,
+          backgroundColor: Color(0xFFF25C05),
           child: Icon(Icons.shopping_cart, size: 35, color: Colors.white), // Adjust the icon size as needed
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        color: Colors.red,
+        color: Colors.grey,
         shape: const CircularNotchedRectangle(),
         notchMargin: 6.0,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             IconButton(
-              icon: const Icon(Icons.home, color: Colors.white),
+              icon: Obx(() => Icon(Icons.home,
+                  color: controller.selectedIndex.value == 0
+                      ? Color(0xFFF2510A)
+                      : Colors.white)),
               iconSize: 30,
-              onPressed: () {
-                Get.toNamed(Routes.HOME);
-              },
+              onPressed: () => controller.changeTabIndex(0),
             ),
             IconButton(
-              icon: const Icon(Icons.person, color: Colors.white),
+              icon: Obx(() => Icon(Icons.person,
+                  color: controller.selectedIndex.value == 1
+                      ? Color(0xFFF2510A)
+                      : Colors.white)),
               iconSize: 30,
-              onPressed: () {},
+              onPressed: () => controller.changeTabIndex(1),
             ),
-            const SizedBox(width: 48),  // Provide space for the floating button
+            const SizedBox(width: 48), // Provide space for the floating button
             IconButton(
-              icon: const Icon(Icons.search, color: Colors.white),
+              icon: Obx(() => Icon(Icons.search,
+                  color: controller.selectedIndex.value == 2
+                      ? Color(0xFFF2510A)
+                      : Colors.white)),
               iconSize: 30,
-              onPressed: () {},
+              onPressed: () => controller.changeTabIndex(2),
             ),
             IconButton(
-              icon: const Icon(Icons.more_horiz, color: Colors.white),
+              icon: Obx(() => Icon(Icons.more_horiz,
+                  color: controller.selectedIndex.value == 3
+                      ? Color(0xFFF2510A)
+                      : Colors.white)),
               iconSize: 30,
-              onPressed: () {},
+              onPressed: () => controller.changeTabIndex(3),
             ),
           ],
         ),

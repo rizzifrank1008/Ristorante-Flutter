@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart'; // Import necessario per manipolare le UI Overlays
+import 'features/cart/presentation/controller/cart_controller.dart';
 import 'firebase_options.dart';
 import 'routes/app_pages.dart';
 import 'routes/routes.dart';
@@ -19,7 +20,6 @@ Future<void> main() async {
 
   // Nascondi la barra di stato e la barra di navigazione all'avvio dell'app
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-
   runApp(const MyApp());
 }
 

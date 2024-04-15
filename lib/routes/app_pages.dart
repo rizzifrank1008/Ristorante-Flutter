@@ -13,6 +13,8 @@ import '../features/productDetailsPage/bindings/product-details_binding.dart';
 import '../features/productDetailsPage/presentation/pages/product-details_page.dart';
 import '../features/productPage/bindings/product_binding.dart';
 import '../features/productPage/presentation/pages/product_page.dart';
+import '../features/register/bindings/register_binding.dart';
+import '../features/register/presentation/pages/register_page.dart';
 
 class AppPages{
   static final routes = [
@@ -35,6 +37,11 @@ class AppPages{
         name: Routes.AUTH,
         page: () => const AuthPage(),
         binding: AuthBinding()
+    ),
+    GetPage( // Aggiungi questa nuova rotta
+        name: Routes.REGISTER,
+        page: () => const RegisterPage(),
+        binding: RegisterBinding()
     ),
     GetPage( // Aggiungi questa nuova rotta
         name: Routes.PRODOTTODETTAGLIO,

@@ -6,6 +6,7 @@
 
 import 'package:get/get.dart';
 
+import '../../../../routes/routes.dart';
 import '../../data/models/category_model.dart';
 import '../../data/repositories_impl/menu_repository_impl.dart';
 
@@ -29,4 +30,27 @@ class MenuRestourantController extends GetxController {
     final categoryList = await repository.getCategories();
     categories.assignAll(categoryList); // Aggiorna la lista osservabile con i nuovi dati.
   }
+
+  var selectedIndex = 0.obs;  // Use Rx<int> to observe changes
+
+  void changeTabIndex(int index) {
+    selectedIndex.value = index;  // Update the observable value
+    switch (index) {
+      case 0:
+        Get.toNamed(Routes.HOME);
+        break;
+      case 1:
+      // Navigate to another route or do nothing
+        break;
+      case 2:
+      // Navigate to another route or do nothing
+        break;
+      case 3:
+      // Navigate to another route or do nothing
+        break;
+      default:
+        break;
+    }
+  }
+
 }

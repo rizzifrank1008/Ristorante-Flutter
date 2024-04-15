@@ -1,18 +1,22 @@
-class CartItem {
-  String productId;
-  String title;
-  double price;
-  int quantity;
+import 'package:get/get.dart';
 
-  CartItem({required this.productId, required this.title,required this.price, required this.quantity});
+class CartItem {
+  final String productId;
+  final String title;
+  final double price;
+  var quantity = 1.obs;  // Usa RxInt per rendere la quantità osservabile
+
+  CartItem({required this.productId, required this.title, required this.price, required int quantity}) {
+    this.quantity.value = quantity;
+  }
 
   void increaseQuantity() {
-    quantity++;
+    quantity.value++;
   }
 
   void decreaseQuantity() {
-    if (quantity > 1) quantity--;
+    if (quantity.value > 0) quantity.value--;
   }
 
-  double get totalPrice => quantity * price;
+  double get totalPrice => price * quantity.value;
 }

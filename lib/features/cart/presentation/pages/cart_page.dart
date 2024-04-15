@@ -43,7 +43,7 @@ class CartPage extends StatelessWidget {
                     icon: const Icon(Icons.remove_circle_outline),
                     onPressed: () => cartController.decreaseQuantity(item), // Diminuisci la quantità
                   ),
-                  Text(item.quantity.toString()), // Mostra la quantità
+                  Obx(() => Text(item.quantity.toString())),
                   IconButton(
                     icon: const Icon(Icons.add_circle_outline),
                     onPressed: () => cartController.increaseQuantity(item), // Aumenta la quantità
@@ -64,7 +64,7 @@ class CartPage extends StatelessWidget {
               Obx(() => Text('Totale: €${cartController.total.value.toStringAsFixed(2)}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))), // Aggiorna il totale dinamicamente
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black, // Colore di sfondo
+                  backgroundColor: Color(0xFFF2510A),  // Colore di sfondo
                 ),
                 child: const Text('Ordina', style: TextStyle(color: Colors.white)),
                 onPressed: () {
