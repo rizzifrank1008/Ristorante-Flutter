@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../routes/routes.dart';
+import '../../../cart/presentation/controller/cart_controller.dart';
 import '../../../home/presentation/pages/home_page.dart';
 import '../../../productDetailsPage/presentation/pages/product-details_page.dart';
 import '../controller/product_controller.dart';
@@ -10,6 +11,7 @@ class ProductPage extends GetView<ProductRestourantController> {
 
   @override
   Widget build(BuildContext context) {
+    final CartController cartController = Get.find<CartController>(); // Ottieni l'istanza del CartController
     final categoryId = Get.arguments; // Ottieni l'ID della categoria selezionata
 
     return Scaffold(
@@ -140,7 +142,7 @@ class ProductPage extends GetView<ProductRestourantController> {
                             ),
                           ),
                           onPressed: () {
-                            // Logica per aggiungere al carrello
+                            cartController.addProduct(meal.id, meal.title, meal.price);
                           },
                         ),
                         SizedBox(width: 10), // Distanza tra i pulsanti
@@ -173,7 +175,9 @@ class ProductPage extends GetView<ProductRestourantController> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.transparent, // Makes FAB background transparent
         elevation: 0,
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed(Routes.CARRELLO);
+        },
         child: const CircleAvatar(
           radius: 30, // Adjust the size for visual appearance
           backgroundColor: Colors.orange,

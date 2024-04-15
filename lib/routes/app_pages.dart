@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:ristorante_finale/routes/routes.dart';
 
+import '../features/cart/bindings/cart_binding.dart';
+import '../features/cart/presentation/pages/cart_page.dart';
 import '../features/home/bindings/home_binding.dart';
 import '../features/home/presentation/pages/home_page.dart';
 import '../features/login/bindings/auth_binding.dart';
@@ -38,6 +40,11 @@ class AppPages{
         name: Routes.PRODOTTODETTAGLIO,
         page: () => const ProductDetailsPage(),
         binding: ProductDetailsBinding()
+    ),
+    GetPage( // Aggiungi questa nuova rotta
+        name: Routes.CARRELLO,
+        page: () => const CartPage(),
+        binding: CartBinding()
     ),
   ];
 }

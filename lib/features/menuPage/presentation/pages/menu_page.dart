@@ -98,7 +98,9 @@ class MenuPage extends GetView<MenuRestourantController> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.transparent, // Makes FAB background transparent
         elevation: 0,
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed(Routes.CARRELLO);
+        },
         child: const CircleAvatar(
           radius: 30, // Adjust the size for visual appearance
           backgroundColor: Colors.orange,
