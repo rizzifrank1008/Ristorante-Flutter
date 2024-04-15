@@ -40,7 +40,7 @@ class MenuRestourantController extends GetxController {
         Get.toNamed(Routes.HOME);
         break;
       case 1:
-      // Navigate to another route or do nothing
+        Get.toNamed(Routes.PROFILE);
         break;
       case 2:
       // Navigate to another route or do nothing

@@ -6,5 +6,5 @@ abstract class Routes{
   static const PRODOTTO = '/product';
   static const PRODOTTODETTAGLIO = '/product-dettaglio';
   static const CARRELLO = '/cart';
-
+  static const PROFILE = '/profile';
 }

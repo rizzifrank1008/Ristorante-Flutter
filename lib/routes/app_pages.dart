@@ -13,6 +13,8 @@ import '../features/productDetailsPage/bindings/product-details_binding.dart';
 import '../features/productDetailsPage/presentation/pages/product-details_page.dart';
 import '../features/productPage/bindings/product_binding.dart';
 import '../features/productPage/presentation/pages/product_page.dart';
+import '../features/profilePage/bindings/profile_binding.dart';
+import '../features/profilePage/presentation/pages/profile_page.dart';
 import '../features/register/bindings/register_binding.dart';
 import '../features/register/presentation/pages/register_page.dart';
 
@@ -52,6 +54,11 @@ class AppPages{
         name: Routes.CARRELLO,
         page: () => const CartPage(),
         binding: CartBinding()
+    ),
+    GetPage( // Aggiungi questa nuova rotta
+        name: Routes.PROFILE,
+        page: () => const ProfilePage(),
+        binding: ProfileBinding()
     ),
   ];
 }
