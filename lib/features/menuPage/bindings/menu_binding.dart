@@ -9,6 +9,10 @@
 // gestire i dati. Il controller è il punto di collegamento tra l'UI e la logica di business/data.
 
 import 'package:get/get.dart';
+import '../../cart/data/datasources/cart_firebase_data_source.dart';
+import '../../cart/data/repositories_impl/cart_repository_impl.dart';
+import '../../cart/domain/repositories/cart_repository.dart';
+import '../../cart/presentation/controller/cart_controller.dart';
 import '../../productDetailsPage/data/datasources/product-details_firebase_data_source.dart';
 import '../../productDetailsPage/data/repositories_impl/product-details_repository_impl.dart';
 import '../../productDetailsPage/presentation/controller/product-details_controller.dart';
@@ -35,6 +39,11 @@ class MenuBinding extends Bindings {
     Get.lazyPut<MenuFirebaseDataSource>(() => MenuFirebaseDataSource());
     Get.lazyPut<MenuRepository>(() => MenuRepositoryImpl(Get.find()));
     Get.lazyPut<MenuRestourantController>(() => MenuRestourantController(repository: Get.find()));
+
+    Get.put<CartFirebaseDataSource>(CartFirebaseDataSource(), permanent: true);
+    Get.put<CartRepository>(CartRepositoryImpl(Get.find<CartFirebaseDataSource>()), permanent: true);
+    Get.put<CartController>(CartController(repository: Get.find<CartRepository>(), userId: 'userIdHere'), permanent: true);
+
 
   }
 

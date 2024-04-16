@@ -13,7 +13,8 @@ class CartPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Il tuo Carrello', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFD7D7D7),
+        centerTitle: true,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
         actions: [

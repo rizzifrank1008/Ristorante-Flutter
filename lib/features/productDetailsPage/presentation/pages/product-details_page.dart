@@ -16,7 +16,8 @@ class ProductDetailsPage extends GetView<ProductDetailsRestourantController> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Dettagli del Prodotto', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFD7D7D7),
+        centerTitle: true,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
         leading: IconButton(

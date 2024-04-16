@@ -41,9 +41,9 @@ class ProductBinding extends Bindings {
     Get.lazyPut<MenuRepository>(() => MenuRepositoryImpl(Get.find()));
     Get.lazyPut<MenuRestourantController>(() => MenuRestourantController(repository: Get.find()));
 
-    Get.lazyPut<CartFirebaseDataSource>(() => CartFirebaseDataSource());
-    Get.lazyPut<CartRepository>(() => CartRepositoryImpl(Get.find()));
-    Get.lazyPut<CartController>(() => CartController(repository: Get.find(), userId: ''));
+    Get.put<CartFirebaseDataSource>(CartFirebaseDataSource(), permanent: true);
+    Get.put<CartRepository>(CartRepositoryImpl(Get.find<CartFirebaseDataSource>()), permanent: true);
+    Get.put<CartController>(CartController(repository: Get.find<CartRepository>(), userId: 'userIdHere'), permanent: true);
 
   }
 }

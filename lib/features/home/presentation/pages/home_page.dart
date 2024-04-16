@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView( // Permette il scrolling se il contenuto è troppo grande
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.deepPurple[400], // Imposta qui il colore di sfondo viola
+            color: Color(0xFF272d2f),
           ),
           height: MediaQuery.of(context).size.height - AppBar().preferredSize.height, // Altezza totale meno quella dell'AppBar
           child: Center( // Centra il contenuto
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Sushi-Mania è il paradiso per gli amanti del sushi...',
+                    'cliccando su menu potrai scegliere i piatti che preferisci e inviarci direttamente l ordine in cucina',
                     textAlign: TextAlign.center,
                     style: descriptionStyle,
                   ),
@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
                     ElevatedButton.icon(
                       style: buttonStyle(const Color(0xFFF2510A)), // Applica il colore arancione
                       icon: const Icon(Icons.restaurant_menu, color: Colors.white),
-                      label: const Text('Menu', style: TextStyle(fontSize: 16)),
+                      label: const Text('vai al Menu', style: TextStyle(fontSize: 16)),
                       onPressed: () {
                         Get.toNamed(Routes.MENU);
                       },

@@ -69,4 +69,9 @@ class CartController extends GetxController {
       Get.snackbar('Errore', 'Il carrello è vuoto!');
     }
   }
+
+  bool isProductInCart(String productId) {
+    return cartItems.any((item) => item.productId == productId);
+  }
+
 }

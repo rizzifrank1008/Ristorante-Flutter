@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ristorante_finale/features/menuPage/presentation/controller/menu_controller.dart';
 
 import '../../../../routes/routes.dart';
+import '../../../cart/presentation/controller/cart_controller.dart';
 
 class MenuPage extends GetView<MenuRestourantController> {
   const MenuPage({super.key});
@@ -11,10 +12,13 @@ class MenuPage extends GetView<MenuRestourantController> {
 
   @override
   Widget build(BuildContext context) {
+    final CartController cartController = Get.find<CartController>();
     return Scaffold(
+
       appBar: AppBar(
-        title: Text('Dettagli del Prodotto', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.white,
+        title: Text('Menù', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+        backgroundColor: Color(0xFFD7D7D7),
+        centerTitle: true,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
         leading: IconButton(
@@ -98,20 +102,35 @@ class MenuPage extends GetView<MenuRestourantController> {
         )),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.transparent, // Makes FAB background transparent
+        backgroundColor: Colors.transparent,
         elevation: 0,
         onPressed: () {
           Get.toNamed(Routes.CARRELLO);
         },
-        child: const CircleAvatar(
-          radius: 30, // Adjust the size for visual appearance
-          backgroundColor: Color(0xFFF25C05),
-          child: Icon(Icons.shopping_cart, size: 35, color: Colors.white), // Adjust the icon size as needed
-        ),
+        child: Obx(() => Stack(
+          alignment: Alignment.topRight,
+          children: [
+            CircleAvatar(
+              radius: 30,
+              backgroundColor: Color(0xFFF25C05),
+              child: Icon(Icons.shopping_cart, size: 35, color: Colors.white),
+            ),
+            // Mostra il badge solo se ci sono elementi nel carrello
+            if (cartController.cartItems.isNotEmpty)
+              CircleAvatar(
+                radius: 10,
+                backgroundColor: Colors.red,
+                child: Text(
+                    cartController.cartItems.length.toString(),
+                    style: TextStyle(fontSize: 12, color: Colors.white)
+                ),
+              ),
+          ],
+        )),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        color: Colors.grey,
+        color: Color(0xFFD7D7D7),
         shape: const CircularNotchedRectangle(),
         notchMargin: 6.0,
         child: Row(

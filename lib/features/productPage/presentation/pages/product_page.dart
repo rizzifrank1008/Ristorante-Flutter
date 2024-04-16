@@ -17,6 +17,8 @@ class ProductPage extends GetView<ProductRestourantController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pasti del Ristorante'),
+        backgroundColor: Color(0xFFD7D7D7),
+        centerTitle: true,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -129,22 +131,31 @@ class ProductPage extends GetView<ProductRestourantController> {
                     ButtonBar(
                       alignment: MainAxisAlignment.start,
                       children: [
-                        ElevatedButton.icon(
+                        Obx(() => ElevatedButton.icon(
                           icon: const Icon(Icons.add_shopping_cart, color: Colors.white),
-                          label: const Text(
-                            'Aggiungi al carrello',
-                            style: TextStyle(color: Colors.white),
-                          ),
+                          label: const Text('Aggiungi al carrello', style: TextStyle(color: Colors.white)),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor: cartController.isProductInCart(meal.id) ? Colors.purple : Theme.of(context).colorScheme.secondary,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
                           onPressed: () {
                             cartController.addProduct(meal.id, meal.title, meal.price);
+                            Get.snackbar(
+                                'Carrello',
+                                'Prodotto aggiunto al carrello!',
+                                backgroundColor: Colors.grey,
+                                colorText: Colors.white,
+                                duration: Duration(seconds: 2)  // Snackbar dura 2 secondi
+                            );
                           },
-                        ),
+
+                        )),
+
+
+
+
                         SizedBox(width: 10), // Distanza tra i pulsanti
                         ElevatedButton.icon(
                           icon: const Icon(Icons.info_outline, color: Colors.white),
@@ -173,17 +184,34 @@ class ProductPage extends GetView<ProductRestourantController> {
         }),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.transparent, // Makes FAB background transparent
+        backgroundColor: Colors.transparent,
         elevation: 0,
         onPressed: () {
           Get.toNamed(Routes.CARRELLO);
         },
-        child: const CircleAvatar(
-          radius: 30, // Adjust the size for visual appearance
-          backgroundColor: Color(0xFFF25C05),
-          child: Icon(Icons.shopping_cart, size: 35, color: Colors.white), // Adjust the icon size as needed
-        ),
+        child: Obx(() => Stack(
+          alignment: Alignment.topRight,
+          children: [
+            CircleAvatar(
+              radius: 30,
+              backgroundColor: Color(0xFFF25C05),
+              child: Icon(Icons.shopping_cart, size: 35, color: Colors.white),
+            ),
+            // Mostra il badge solo se ci sono elementi nel carrello
+            if (cartController.cartItems.isNotEmpty)
+              CircleAvatar(
+                radius: 10,
+                backgroundColor: Colors.red,
+                child: Text(
+                    cartController.cartItems.length.toString(),
+                    style: TextStyle(fontSize: 12, color: Colors.white)
+                ),
+              ),
+          ],
+        )),
       ),
+
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         color: Colors.grey,
